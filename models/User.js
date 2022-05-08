@@ -3,45 +3,45 @@ module.exports = (sequelize, DataTypes) => {
         'User',
         {
             id: {
-                type: Sequelize.INTEGER,
+                type: DataTypes.INTEGER,
                 primaryKey: true,
                 autoIncrement: true,
                 allowNull: false,
             },
             name: {
-                type: Sequelize.STRING,
+                type: DataTypes.STRING,
                 allowNull: false,
             },
             profession: {
-                type: Sequelize.STRING,
+                type: DataTypes.STRING,
                 allowNull: true,
             },
             avatar: {
-                type: Sequelize.STRING,
+                type: DataTypes.STRING,
                 allowNull: true,
             },
             role: {
-                type: Sequelize.ENUM('admin', 'student'),
+                type: DataTypes.ENUM('admin', 'student'),
                 allowNull: false,
                 defaultValue: 'student',
             },
             email: {
-                type: Sequelize.STRING,
+                type: DataTypes.STRING,
                 allowNull: false,
                 unique: true,
             },
             password: {
-                type: Sequelize.STRING,
+                type: DataTypes.STRING,
                 allowNull: false,
             },
             createdAt: {
                 field: 'created_at',
-                type: Sequelize.DATE,
+                type: DataTypes.DATE,
                 allowNull: false,
             },
             updatedAt: {
                 field: 'updated_at',
-                type: Sequelize.DATE,
+                type: DataTypes.DATE,
                 allowNull: false,
             },
         },
