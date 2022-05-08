@@ -2,7 +2,40 @@
 
 module.exports = {
     async up(queryInterface, Sequelize) {
-        await queryInterface.createTable('users', { id: Sequelize.INTEGER });
+        await queryInterface.createTable('refresh_tokens', {
+            id: {
+                type: Sequelize.INTEGER,
+                autoIncrement: true,
+                allowNull: false,
+                primaryKey: true,
+            },
+            token: {
+                type: Sequelize.TEXT,
+                allowNull: false,
+            },
+            user_id: {
+                type: Sequelize.INTEGER,
+                allowNull: false,
+            },
+            created_at: {
+                type: Sequelize.DATE,
+                allowNull: false,
+            },
+            updated_at: {
+                type: Sequelize.DATE,
+                allowNull: false,
+            },
+        });
+
+        await queryInterface.addConstraint('refresh_tokens', {
+            type: 'foreign key',
+            name: 'REFRESH_TOKENS__USER_ID',
+            fields: ['user_id'],
+            references: {
+                table: 'users',
+                field: 'id',
+            },
+        });
     },
 
     async down(queryInterface, Sequelize) {
