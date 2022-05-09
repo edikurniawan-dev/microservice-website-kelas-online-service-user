@@ -4,26 +4,13 @@ module.exports = (sequelize, DataTypes) => {
         {
             id: {
                 type: DataTypes.INTEGER,
-                primaryKey: true,
                 autoIncrement: true,
+                primaryKey: true,
                 allowNull: false,
             },
             name: {
                 type: DataTypes.STRING,
                 allowNull: false,
-            },
-            profession: {
-                type: DataTypes.STRING,
-                allowNull: true,
-            },
-            avatar: {
-                type: DataTypes.STRING,
-                allowNull: true,
-            },
-            role: {
-                type: DataTypes.ENUM('admin', 'student'),
-                allowNull: false,
-                defaultValue: 'student',
             },
             email: {
                 type: DataTypes.STRING,
@@ -33,6 +20,20 @@ module.exports = (sequelize, DataTypes) => {
             password: {
                 type: DataTypes.STRING,
                 allowNull: false,
+            },
+            role: {
+                type: DataTypes.ENUM,
+                values: ['admin', 'student'],
+                allowNull: false,
+                defaultValue: 'student',
+            },
+            avatar: {
+                type: DataTypes.STRING,
+                allowNull: true,
+            },
+            profession: {
+                type: DataTypes.STRING,
+                allowNull: true,
             },
             createdAt: {
                 field: 'created_at',
@@ -50,5 +51,6 @@ module.exports = (sequelize, DataTypes) => {
             timestamps: true,
         },
     );
+
     return User;
 };
